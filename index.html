@@ -429,7 +429,73 @@
     opacity: 0; pointer-events: none; transition: opacity 0.2s;
   }
   .modal-overlay.show { opacity: 1; pointer-events: all; }
+  
   .modal {
     background: var(--panel); border-radius: 22px; padding: 24px;
     width: 100%; max-width: 320px; border: 1px solid rgba(255,255,255,0.1);
     transform: scale(0.9); transition: transform 0.2s;
+  }
+  .modal-overlay.show .modal { transform: scale(1); }
+  .modal-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+  .modal-btn { width: 100%; padding: 12px; border-radius: 12px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+  .modal-btn.confirm { background: var(--danger); color: white; }
+  .modal-btn.cancel { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+  /* RESPONSIVE LAYOUT */
+  @media(max-width: 768px) {
+    .sidebar { display: none; }
+    .mobile-nav { display: flex; }
+    .main { margin-left: 0; padding-bottom: 80px; }
+    .balance-value { font-size: 34px; }
+  }
+  @media(min-width: 769px) {
+    .sidebar { display: flex; }
+    .mobile-nav { display: none; }
+    .main { margin-left: 64px; }
+    .tab { max-width: 800px; margin: 0 auto; padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="bg-anim">
+    <div class="bg-blob"></div>
+    <div class="bg-blob"></div>
+    <div class="bg-blob"></div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-logo">SHIFT v3.0</div>
+    <button class="nav-btn active" data-tab="dashboard">📊</button>
+    <button class="nav-btn" data-tab="add-shift">➕</button>
+    <button class="nav-btn" data-tab="history">📜</button>
+    <button class="nav-btn" data-tab="settings">⚙️</button>
+  </div>
+
+  <div class="mobile-nav">
+    <button class="nav-btn active" data-tab="dashboard">📊</button>
+    <button class="nav-btn" data-tab="add-shift">➕</button>
+    <button class="nav-btn" data-tab="history">📜</button>
+    <button class="nav-btn" data-tab="settings">⚙️</button>
+  </div>
+
+  <div class="main">
+    
+    <div class="tab active" id="dashboard">
+      <div class="balance-card">
+        <div class="balance-top">
+          <div class="period-tabs">
+            <button class="period-btn active" data-period="month">Місяць</button>
+            <button class="period-btn" data-period="year">2026 рік</button>
+            <button class="period-btn" data-period="all">Всього</button>
+          </div>
+          <button class="incognito-btn" id="incognitoToggle">👁️</button>
+        </div>
+        <div class="balance-main">
+          <div class="balance-label">Чистий прибуток (ФОП)</div>
+          <div class="balance-value" id="mainBalance">0.00 ₴</div>
+        </div>
+        
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-item-label">Грудни
